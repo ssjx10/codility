@@ -6,19 +6,15 @@
 
 int solution(vector<int> &A) {
     // write your code in C++14 (g++ 6.2.0)
-    int sum1 = 0;
-    int sum2 = 0;
+    int cnt = 0; // east
+    int ans = 0;
     for(int i=0;i<A.size();i++) {
-        sum2 += A[i];
+        if(A[i] == 0) cnt++;
+        else ans += cnt;
+        if(ans > 1000000000) {
+            ans = -1;
+            break;
+        }
     }
-    int ans = 987654321;
-    for(int i=1;i<A.size();i++) {
-        sum1 += A[i-1];
-        sum2 -= A[i-1];
-        int diff = abs(sum1 - sum2);
-        if(ans > diff)
-            ans = diff;
-    }
-
     return ans;
 }
